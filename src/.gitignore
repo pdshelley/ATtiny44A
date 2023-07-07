@@ -1,0 +1,2 @@
+# don't add packs to source control, download them from Atmel's website instead and unzip them in a folder called packs
+packs

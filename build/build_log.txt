@@ -1,0 +1,15 @@
+main.swift:12:1: warning: 'arduinoUno' is deprecated: This level of abstraction is going to be removed from HAL.
+arduinoUno.a5.mode(.input)
+^
+main.swift:13:1: warning: 'arduinoUno' is deprecated: This level of abstraction is going to be removed from HAL.
+arduinoUno.pin11.mode(.output)
+^
+main.swift:14:1: warning: 'arduinoUno' is deprecated: This level of abstraction is going to be removed from HAL.
+arduinoUno.pin3.mode(.output)
+^
+ArduinoAPI.swift:167:23: warning: 'init(_:)' is deprecated: warning, this initialiser will return 0 when it cannot cast! Use safe: instead
+    let integerPart = UInt8(abs(number))
+                      ^
+ArduinoAPI.swift:189:25: warning: 'init(_:)' is deprecated: warning, this initialiser will return 0 when it cannot cast! Use safe: instead
+            let digit = Int(m)
+                        ^

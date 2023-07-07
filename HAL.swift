@@ -1,0 +1,197 @@
+//===----------------------------------------------------------------------===//
+//
+// HAL.swift
+// Swift For Arduino
+//
+// Created by Carl Peto & Paul Shelley on 11/27/20.
+// Copyright © 2020 Swift4Arduino. All rights reserved.
+//
+//===----------------------------------------------------------------------===//
+
+
+// NOTE: This Port abstraction could also have the same issue. I think it's very safe to assume that all of the AVR chips will work this way but I am unfamiliar with how strong this convention is. I'll try to research this.
+// See ATmega48A/PA/88A/PA/168A/PA/328/P Datasheet section 14
+public protocol PartialPort {
+  associatedtype PortType: BinaryInteger
+  static var portAccessor: PortType { get set }
+  static var inputAddress: PortType { get } // TODO: Can you write to this? See 14.4.4
+}
+
+// we separate out the PartialPort protocol because some AVR chips (the HVA series) have
+// a port that only contains read/write registers and no data direction register
+public protocol Port: PartialPort {
+  static var dataDirection: PortType { get set }
+}
+
+public protocol Bit {
+    associatedtype BitType: BinaryInteger
+    associatedtype PinMaskType: BinaryInteger
+    static var bit: BitType { get }
+}
+
+public extension Bit {
+    @inlinable
+    @inline(__always)
+    static var pinSetMask: PinMaskType {
+        1 << bit
+    }
+
+    @inlinable
+    @inline(__always)
+    static var pinClearMask: PinMaskType {
+        ~(1 << bit)
+    }
+
+    @inlinable
+    @inline(__always)
+    static var pinDirectionSetMask: PinMaskType {
+        1 << bit
+    }
+
+    @inlinable
+    @inline(__always)
+    static var pinDirectionClearMask: PinMaskType {
+        ~(1 << bit)
+    }
+
+    @inlinable
+    @inline(__always)
+    static var pinGetMask: PinMaskType {
+        1 << bit
+    }
+}
+
+public protocol PartialPortPin {
+    associatedtype PinPartialPort: PartialPort
+    associatedtype PinBit: Bit
+
+    static func set(_ value: DigitalValue)
+    static func value() -> Bool
+}
+
+public protocol PortPin: PartialPortPin where PinPartialPort == PinPort {
+    associatedtype PinPort: Port
+
+    static func mode(_ output: Mode)
+}
+
+// TODO: I would love to extend pins with additionl functionality that have it. Obvious cases are Digial pins, pins with Analouge to Digital capabilities, and Pulse Width Moduation capabilities.
+// Carl: But, the danger is (as with Arduino Wiring library) you hide the fact you're actually using a timer. Maybe it's better to keep the config on the timer. And doing something like timer2... mode fast pwm... output on pin pd3... Mark 50%
+
+//protocol Digital: Pin {
+//
+//}
+//
+//protocol ADC: Pin { // Note: Should we use the word `Analogue` here or should we call this something else more inline with the datasheet like ADC? I'm leaning to ADC
+//
+//}
+//
+//protocol PWM: Pin {
+//
+//}
+
+public extension PartialPortPin where PinPartialPort.PortType == PinBit.PinMaskType {
+  @inlinable
+  @inline(__always)
+  static func set(_ value: DigitalValue) {
+    if value == .high {
+      PinPartialPort.portAccessor |= PinBit.pinSetMask
+    } else {
+      PinPartialPort.portAccessor &= PinBit.pinClearMask
+    }
+  }
+
+  @inlinable
+  @inline(__always)
+  static func value() -> Bool {
+    PinPartialPort.inputAddress & PinBit.pinGetMask != 0
+  }
+}
+
+public extension PortPin where PinPort.PortType == PinBit.PinMaskType {
+  @inlinable
+  @inline(__always)
+  static func mode(_ output: Mode) {
+    if output == .output {
+      PinPort.dataDirection |= PinBit.pinDirectionSetMask
+    } else {
+      PinPort.dataDirection &= PinBit.pinDirectionClearMask
+    }
+  }
+}
+
+public enum DigitalPin<_Port: Port, _Bit: Bit>: PortPin where _Port.PortType == _Bit.PinMaskType {
+  public typealias PinPort = _Port
+  public typealias PinPartialPort = _Port
+  public typealias PinBit = _Bit
+}
+
+public enum InputOnlyDigitalPin<_Port: PartialPort, _Bit: Bit>: PartialPortPin where _Port.PortType == _Bit.PinMaskType {
+  public typealias PinPartialPort = _Port
+  public typealias PinBit = _Bit
+}
+
+// bit definitions for AVR
+public enum Bit0: Bit {
+    public typealias PinMaskType = UInt8
+
+    @inlinable
+    @inline(__always)
+    public static var bit: UInt8 { 0 }
+}
+
+public enum Bit1: Bit {
+    public typealias PinMaskType = UInt8
+
+    @inlinable
+    @inline(__always)
+    public static var bit: UInt8 { 1 }
+}
+
+public enum Bit2: Bit {
+    public typealias PinMaskType = UInt8
+
+    @inlinable
+    @inline(__always)
+    public static var bit: UInt8 { 2 }
+}
+
+public enum Bit3: Bit {
+    public typealias PinMaskType = UInt8
+
+    @inlinable
+    @inline(__always)
+    public static var bit: UInt8 { 3 }
+}
+
+public enum Bit4: Bit {
+    public typealias PinMaskType = UInt8
+
+    @inlinable
+    @inline(__always)
+    public static var bit: UInt8 { 4 }
+}
+
+public enum Bit5: Bit {
+    public typealias PinMaskType = UInt8
+
+    @inlinable
+    @inline(__always)
+    public static var bit: UInt8 { 5 }
+}
+
+public enum Bit6: Bit {
+    public typealias PinMaskType = UInt8
+
+    @inlinable
+    @inline(__always)
+    public static var bit: UInt8 { 6 }
+}
+
+public enum Bit7: Bit {
+    public typealias PinMaskType = UInt8
+
+    @inlinable
+    @inline(__always)
+    public static var bit: UInt8 { 7 }
+}

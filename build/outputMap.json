@@ -1,0 +1,15 @@
+{
+"main.swift":{"llvm-ir":"build/main.ll","llvm-bc":"build/main.bc","raw-sil":"build/main.sil","sil":"build/main.csil"},
+"atmega328p.swift":{"llvm-ir":"build/atmega328p.ll","llvm-bc":"build/atmega328p.bc","raw-sil":"build/atmega328p.sil","sil":"build/atmega328p.csil"},
+"DigitalValue.swift":{"llvm-ir":"build/DigitalValue.ll","llvm-bc":"build/DigitalValue.bc","raw-sil":"build/DigitalValue.sil","sil":"build/DigitalValue.csil"},
+"HAL.swift":{"llvm-ir":"build/HAL.ll","llvm-bc":"build/HAL.bc","raw-sil":"build/HAL.sil","sil":"build/HAL.csil"},
+"HAL_utils.swift":{"llvm-ir":"build/HAL_utils.ll","llvm-bc":"build/HAL_utils.bc","raw-sil":"build/HAL_utils.sil","sil":"build/HAL_utils.csil"},
+"Mode.swift":{"llvm-ir":"build/Mode.ll","llvm-bc":"build/Mode.bc","raw-sil":"build/Mode.sil","sil":"build/Mode.csil"},
+"module/Timers.swift":{"llvm-ir":"build/Timers.ll","llvm-bc":"build/Timers.bc","raw-sil":"build/Timers.sil","sil":"build/Timers.csil"},
+"module/TwoWireInterface.swift":{"llvm-ir":"build/TwoWireInterface.ll","llvm-bc":"build/TwoWireInterface.bc","raw-sil":"build/TwoWireInterface.sil","sil":"build/TwoWireInterface.csil"},
+"module/UART.swift":{"llvm-ir":"build/UART.ll","llvm-bc":"build/UART.bc","raw-sil":"build/UART.sil","sil":"build/UART.csil"},
+"module/AnalogeDigitalConverter.swift":{"llvm-ir":"build/AnalogeDigitalConverter.ll","llvm-bc":"build/AnalogeDigitalConverter.bc","raw-sil":"build/AnalogeDigitalConverter.sil","sil":"build/AnalogeDigitalConverter.csil"},
+"module/PowerManagementAndSleepModes.swift":{"llvm-ir":"build/PowerManagementAndSleepModes.ll","llvm-bc":"build/PowerManagementAndSleepModes.bc","raw-sil":"build/PowerManagementAndSleepModes.sil","sil":"build/PowerManagementAndSleepModes.csil"},
+"ArduinoAPI.swift":{"llvm-ir":"build/ArduinoAPI.ll","llvm-bc":"build/ArduinoAPI.bc","raw-sil":"build/ArduinoAPI.sil","sil":"build/ArduinoAPI.csil"},
+"arduinoUNO.swift":{"llvm-ir":"build/arduinoUNO.ll","llvm-bc":"build/arduinoUNO.bc","raw-sil":"build/arduinoUNO.sil","sil":"build/arduinoUNO.csil"},
+}
