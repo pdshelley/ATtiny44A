@@ -328,6 +328,13 @@ extension AVRTimer0 {
     
     // TODO: Test This!
     // TODO: Add check for toggle?
+    /// Compare Match Output A Mode
+    /// AKA: COM0A. See ATtiny13A Datasheet 11.9.1 Bits 7 & 6.
+    ///
+    /// These bits control the Output Compare pin (OC0A) behavior. If one or both of the COM0A[1:0] bits are set, the OC0A output overrides the normal port functionality of the I/O pin it is connected to. However, note that the
+    /// Data Direction Register (DDR) bit corresponding to the OC0A pin must be set in order to enable the output driver.
+    ///
+    /// When OC0A is connected to the pin, the function of the COM0A[1:0] bits depends on the WGM0[2:0] bit setting.
     @inlinable
     @inline(__always)
     static var CompareOutputModeA: Timers.CompareOutputModeOption {
@@ -343,6 +350,13 @@ extension AVRTimer0 {
     
     // TODO: Test This!
     // TODO: Add check for toggle?
+    /// Compare Match Output B Mode
+    /// AKA: COM0B. See ATtiny13A Datasheet 11.9.1 Bits 5 & 4
+    ///
+    /// These bits control the Output Compare pin (OC0B) behavior. If one or both of the COM0B[1:0] bits are set, the OC0B output overrides the normal port functionality of the I/O pin it is connected to. However, note that the
+    /// Data Direction Register (DDR) bit corresponding to the OC0B pin must be set in order to enable the output driver.
+    ///
+    /// When OC0B is connected to the pin, the function of the COM0B[1:0] bits depends on the WGM0[2:0] bit setting.
     @inlinable
     @inline(__always)
     static var CompareOutputModeB: Timers.CompareOutputModeOption {
@@ -396,7 +410,10 @@ extension AVRTimer0 {
     
     /// See ATtiny13A Datasheet Table 11-8.
     /// NOTE: Modes #4 and #5 are Reserved and are unavalible for use and thus not included.
-    /// Note: This works for the 8 bit timers but the 16 bit timer has different Waveform Generation Modes.
+    ///
+    /// Combined with the WGM02 bit found in the TCCR0B Register, these bits control the counting sequence of the counter, the source for maximum (TOP) counter value, and what type of wave- form generation to be used,
+    /// see Table 11-8 on page 79. Modes of operation supported by the Timer/Counter unit are: Normal mode (counter), Clear Timer on Compare Match (CTC) mode, and two types of Pulse Width Modulation (PWM) modes
+    /// (see “Modes of Operation” on page 70).
     ///
     /// Table 11-8. Waveform Generation Mode Bit Description
     ///
@@ -432,6 +449,66 @@ extension AVRTimer0 {
         set {
             timerCounterControlRegisterA |= (newValue.rawValue & 0b00000011)
             timerCounterControlRegisterB |= ((newValue.rawValue & 0b00000100) << UInt8(1))
+        }
+    }
+    
+    /// Timer/Counter Output Compare Match B Interrupt Enabled
+    /// AKA: OCIE0B. See ATtiny13A Datasheet 11.9.6 bit 3.
+    ///
+    /// When the OCIE0B bit is written to one, and the I-bit in the Status Register is set, the Timer/Counter Compare Match B interrupt is enabled. The corresponding interrupt is executed if a Compare Match in Timer/Counter occurs,
+    /// i.e., when the OCF0B bit is set in the Timer/Counter Interrupt Flag Register – TIFR0.
+    @inlinable
+    @inline(never) // TODO: In the UART code this needed to be 'never', we need to determine what the cause of this is, related to using a Bool here or was it specific to UART.
+    static var outputCompareMatchBInterruptEnabled: Bool {
+        get {
+            return !((timerInterruptMaskRegister & 0b00001000) == 0)
+        }
+        set {
+            timerInterruptMaskRegister |= UInt8(newValue.hashValue) & 0b00001000
+        }
+    }
+    
+    /// Timer/Counter Output Compare Match A Interrupt Enabled
+    /// AKA: OCIE0A. See ATtiny13A Datasheet 11.9.6 bit 2.
+    ///
+    /// When the OCIE0A bit is written to one, and the I-bit in the Status Register is set, the Timer/Counter0 Compare Match A interrupt is enabled. The corresponding interrupt is executed if a Compare Match in Timer/Counter0 occurs,
+    /// i.e., when the OCF0A bit is set in the Timer/Counter 0 Interrupt Flag Register – TIFR0.
+    @inlinable
+    @inline(never) // TODO: In the UART code this needed to be 'never', we need to determine what the cause of this is, related to using a Bool here or was it specific to UART.
+    static var outputCompareMatchAInterruptEnabled: Bool {
+        get {
+            return !((timerInterruptMaskRegister & 0b00000100) == 0)
+        }
+        set {
+            timerInterruptMaskRegister |= UInt8(newValue.hashValue) & 0b00000100
+        }
+    }
+    
+    /// Timer/Counter Overflow Interrupt Enabled
+    /// AKA: TOIE0. See ATtiny13A Datasheet 11.9.6 bit 1.
+    ///
+    ///  When the TOIE0 bit is written to one, and the I-bit in the Status Register is set, the Timer/Count- er0 Overflow interrupt is enabled. The corresponding interrupt is executed if an overflow in Timer/Counter0 occurs, i.e., when the
+    ///  TOV0 bit is set in the Timer/Counter 0 Interrupt Flag Reg- ister – TIFR0.
+    @inlinable
+    @inline(never) // TODO: In the UART code this needed to be 'never', we need to determine what the cause of this is, related to using a Bool here or was it specific to UART.
+    static var outputCompareMatchAInterruptEnabled: Bool {
+        get {
+            return !((timerInterruptMaskRegister & 0b00000010) == 0)
+        }
+        set {
+            timerInterruptMaskRegister |= UInt8(newValue.hashValue) & 0b00000010
+        }
+    }
+    
+    /// 
+    @inlinable
+    @inline(never) // TODO: In the UART code this needed to be 'never', we need to determine what the cause of this is, related to using a Bool here or was it specific to UART.
+    static var outputCompareMatchAInterruptEnabled: Bool {
+        get {
+            return !((timerInterruptMaskRegister & 0b00000010) == 0)
+        }
+        set {
+            timerInterruptMaskRegister |= UInt8(newValue.hashValue) & 0b00000010
         }
     }
 }
