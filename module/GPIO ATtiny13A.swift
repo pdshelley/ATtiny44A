@@ -12,7 +12,7 @@
 
 /// GPIO
 /// Note:  See ATtiny13A Datasheet section 10.4.
-struct GPOI {
+struct GPIO {
     
     enum PORTB: Port {
 
