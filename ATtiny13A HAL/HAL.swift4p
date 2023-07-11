@@ -1,0 +1,15 @@
+files:
+- main.swift
+- ArduinoAPI.swift
+- DigitalValue.swift
+- extras.c
+- HAL.swift
+- HAL_utils.swift
+- main.h
+- Mode.swift
+- module/Timers.swift
+- module/AnalogeDigitalConverter.swift
+- module/GPIO.swift
+settings:
+  BUILD_DIR: build
+  INCLUDE_PRINTF_FLT: 'no'
