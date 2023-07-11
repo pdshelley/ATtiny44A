@@ -13,10 +13,8 @@
 
 
 
-typealias timer0 = AVRTimer0
+typealias timer0 = Timer0
 
-
-// TODO: Section 12.4.1 in the ATtiny13A datasheet: GTCCR – General Timer/Counter Control Register
 
 // NOTE: PRTIM2 needs to be written to zero to enable Timer/Counter2 module. See Datasheet section 18.2 // This was true for the ATmega328p, but probably applies to the ATtiny13A. Double check this.
 struct Timer0 {
@@ -77,9 +75,6 @@ struct Timer0 {
     // InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
     //-------------------------------------------------------------------------------
     //
-    // WARNING: This is not fully tested and understood.
-    // TODO: Figure out what the TCNT2 is used for. I think this is just the actual timer counter that is incrimented each tick of the timer.
-    // TODO: Decide about simplifying this with TCNT2
     @inlinable
     @inline(__always)
     static var timerCounterNumber: UInt8 {
@@ -157,9 +152,6 @@ struct Timer0 {
     // InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
     //-------------------------------------------------------------------------------
     //
-    // WARNING: This is not fully tested and understood.
-    // TODO: Figure out what the TIMSK2 (Timer Interrupt Mask Register) is used for.
-    // TODO: Decide about simplifying this with TIMSK2
     @inlinable
     @inline(__always)
     static var timerInterruptMaskRegister: UInt8 {
@@ -180,14 +172,11 @@ struct Timer0 {
     //-------------------------------------------------------------------------------
     // (0x38)       |   -   |   -   |   -   |   -   | OCF0B | OCF0A | TOV0  |   -   |
     //-------------------------------------------------------------------------------
-    // Read/Write   |   R   |   R   |   R   |   R   |  R/W  |  R/W  |  R/W  |   -   |
+    // Read/Write   |   R   |   R   |   R   |   R   |  R/W  |  R/W  |  R/W  |   R   |
     //-------------------------------------------------------------------------------
     // InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
     //-------------------------------------------------------------------------------
     //
-    // WARNING: This is not fully tested and understood.
-    // TODO: Figure out what the TIFR2 (Timer Interrupt Flag Register) is used for.
-    // TODO: Decide about simplifying this with TIFR2
     @inlinable
     @inline(__always)
     static var timerInterruptFlagRegister: UInt8 {
@@ -196,6 +185,30 @@ struct Timer0 {
         }
         set {
             _rawPointerWrite(address: 0x38, value: newValue)
+        }
+    }
+    
+    
+    /// 12.4.1 GTCCR – General Timer/Counter Control Register
+    //
+    //-------------------------------------------------------------------------------
+    // Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0   |
+    //-------------------------------------------------------------------------------
+    // (0x28)       |  TSM  |   -   |   -   |   -   |   -   |   -   |   -   | PSR10 |
+    //-------------------------------------------------------------------------------
+    // Read/Write   |  R/W  |   R   |   R   |   R   |   R   |   R   |   R   |  R/W  |
+    //-------------------------------------------------------------------------------
+    // InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
+    //-------------------------------------------------------------------------------
+    //
+    @inlinable
+    @inline(__always)
+    static var generalControlRegister: UInt8 {
+        get {
+            return _rawPointerRead(address: 0x28)
+        }
+        set {
+            _rawPointerWrite(address: 0x28, value: newValue)
         }
     }
 }
@@ -319,7 +332,7 @@ extension Timer0 {
 
 // TODO: The position of these bits are in a different place and need updating. This won't work in it's current state.
 /// Extension for Wave Form Generation Mode settings
-extension AVRTimer0 {
+extension Timer0 {
     // TODO: Missing Force Output Compare A and B.
     
     // NOTE: There are many uses for PWM, some as simple as holding the same pulse width and only changing periodically for hobby servo control or LED brightness,
@@ -543,10 +556,41 @@ extension AVRTimer0 {
     @inline(never) // TODO: In the UART code this needed to be 'never', we need to determine what the cause of this is, related to using a Bool here or was it specific to UART.
     static var outputCompareFlagB: Bool {
         get {
-            return !((timerInterruptMaskRegister & 0b00000100) == 0)
+            return !((timerInterruptMaskRegister & 0b00000010) == 0)
         }
         set {
-            timerInterruptMaskRegister |= UInt8(newValue.hashValue) & 0b00000100
+            timerInterruptMaskRegister |= UInt8(newValue.hashValue) & 0b00000010
+        }
+    }
+    
+    /// Timer/Counter Synchronization Mode
+    /// AKA: TSM. See ATtiny13A Datasheet 12.4.1 bit 7.
+    ///
+    /// Writing the TSM bit to one activates the Timer/Counter Synchronization mode. In this mode, the value that is written to the PSR10 bit is kept, hence keeping the Prescaler Reset signal asserted. This ensures that the
+    /// Timer/Counter is halted and can be configured without the risk of advanc- ing during configuration. When the TSM bit is written to zero, the PSR10 bit is cleared by hardware, and the Timer/Counter start counting.
+    @inlinable
+    @inline(never) // TODO: In the UART code this needed to be 'never', we need to determine what the cause of this is, related to using a Bool here or was it specific to UART.
+    static var outputCompareFlagB: Bool {
+        get {
+            return !((generalControlRegister & 0b10000000) == 0)
+        }
+        set {
+            generalControlRegister |= UInt8(newValue.hashValue) & 0b10000000
+        }
+    }
+    
+    /// Prescaler Reset
+    /// AKA: PSR10. See ATtiny13A Datasheet 12.4.1 bit 0.
+    ///
+    /// When this bit is one, the Timer/Counter0 prescaler will be Reset. This bit is normally cleared immediately by hardware, except if the TSM bit is set.
+    @inlinable
+    @inline(never) // TODO: In the UART code this needed to be 'never', we need to determine what the cause of this is, related to using a Bool here or was it specific to UART.
+    static var outputCompareFlagB: Bool {
+        get {
+            return !((generalControlRegister & 0b00000001) == 0)
+        }
+        set {
+            generalControlRegister |= UInt8(newValue.hashValue) & 0b00000001
         }
     }
 }
@@ -554,64 +598,64 @@ extension AVRTimer0 {
 
 
 
-protocol TimerPort {
-    // this will probably(?) always be UInt8, but is useful for preventing the protocol
-    // from ever accidentally being used as an existential type
-    //    associatedtype PortDataType: BinaryInteger // TODO: Fix this.
-    
-    static var timerCounterControlRegisterA: UInt8 { get set }
-    static var timerCounterControlRegisterB: UInt8 { get set }
-    static var timerCounterNumber:  UInt8 { get set }
-    static var outputCompareRegisterA:  UInt8 { get set }
-    static var outputCompareRegisterA:  UInt8 { get set }
-    static var timerInterruptMaskRegister: UInt8 { get set }
-    static var timerInterruptFlagRegister:  UInt8 { get set }
-}
-
-protocol Timer8Bit, TimerPort {
-}
-
-protocol Timer10Bit, TimerPort {
-}
-
-protocol Timer16Bit, TimerPort {
-}
-
-protocol AsycTimer {
-    static var ASSR:   UInt8 { get set }
-    static var GTCCR:  UInt8 { get set }
-}
-
-protocol PWMTimer {
-    // Note: The positions of OCIE0B, OCIE0A, and TOIE0 on the ATtiny13A are different than the 328P.
-    // Note: The positions of OCF0B, OCF0A, and TOV0 on the ATtiny13A are different than the 328P.
-
-    
-    
-    // Note: I believe when there is No External Clock then these are the Prescalors
-    enum Prescaling: UInt8 {
-        case noClockSource = 0 // No Clock Source - counter is off
-        case none = 1 // clkT2S - No Prescaler
-        case eight = 2 // clkT2S/8
-        case thirtyTwo = 3 // clkT2S/32
-        case sixtyFour = 4 // clkT2S/64
-        case oneTwentyEight = 5 // clkT2S/128
-        case twoFiftySix = 6 // clkT2S/256
-        case tenTwentyFour = 7 // clkT2S/1024
-    }
-    
-    // Note: I believe when there is an External Clock then these are the Prescalors
-    enum Prescaling: UInt8 {
-        case noClockSource = 0
-        case none = 1
-        case eight = 2
-        case sixtyFour = 3
-        case twoFiftySix = 4
-        case tenTwentyFour = 5
-        case externalClockOnFallingEdge = 6
-        case externalClockOnRisingEdge = 7
-    }
-}
+//protocol TimerPort {
+//    // this will probably(?) always be UInt8, but is useful for preventing the protocol
+//    // from ever accidentally being used as an existential type
+//    //    associatedtype PortDataType: BinaryInteger // TODO: Fix this.
+//
+//    static var timerCounterControlRegisterA: UInt8 { get set }
+//    static var timerCounterControlRegisterB: UInt8 { get set }
+//    static var timerCounterNumber:  UInt8 { get set }
+//    static var outputCompareRegisterA:  UInt8 { get set }
+//    static var outputCompareRegisterA:  UInt8 { get set }
+//    static var timerInterruptMaskRegister: UInt8 { get set }
+//    static var timerInterruptFlagRegister:  UInt8 { get set }
+//}
+//
+//protocol Timer8Bit, TimerPort {
+//}
+//
+//protocol Timer10Bit, TimerPort {
+//}
+//
+//protocol Timer16Bit, TimerPort {
+//}
+//
+//protocol AsycTimer {
+//    static var ASSR:   UInt8 { get set }
+//    static var GTCCR:  UInt8 { get set }
+//}
+//
+//protocol PWMTimer {
+//    // Note: The positions of OCIE0B, OCIE0A, and TOIE0 on the ATtiny13A are different than the 328P.
+//    // Note: The positions of OCF0B, OCF0A, and TOV0 on the ATtiny13A are different than the 328P.
+//
+//
+//
+//    // Note: I believe when there is No External Clock then these are the Prescalors
+//    enum Prescaling: UInt8 {
+//        case noClockSource = 0 // No Clock Source - counter is off
+//        case none = 1 // clkT2S - No Prescaler
+//        case eight = 2 // clkT2S/8
+//        case thirtyTwo = 3 // clkT2S/32
+//        case sixtyFour = 4 // clkT2S/64
+//        case oneTwentyEight = 5 // clkT2S/128
+//        case twoFiftySix = 6 // clkT2S/256
+//        case tenTwentyFour = 7 // clkT2S/1024
+//    }
+//
+//    // Note: I believe when there is an External Clock then these are the Prescalors
+//    enum Prescaling: UInt8 {
+//        case noClockSource = 0
+//        case none = 1
+//        case eight = 2
+//        case sixtyFour = 3
+//        case twoFiftySix = 4
+//        case tenTwentyFour = 5
+//        case externalClockOnFallingEdge = 6
+//        case externalClockOnRisingEdge = 7
+//    }
+//}
 
 
 
