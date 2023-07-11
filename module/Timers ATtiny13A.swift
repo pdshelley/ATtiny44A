@@ -500,15 +500,53 @@ extension AVRTimer0 {
         }
     }
     
-    /// 
+    /// Output Compare Flag B
+    /// AKA: OCF0B. See ATtiny13A Datasheet 11.9.7 bit 3.
+    ///
+    /// The OCF0B bit is set when a Compare Match occurs between the Timer/Counter and the data in OCR0B – Output Compare Register0 B. OCF0B is cleared by hardware when executing the cor- responding interrupt handling vector.
+    /// Alternatively, OCF0B is cleared by writing a logic one to the flag. When the I-bit in SREG, OCIE0B (Timer/Counter Compare B Match Interrupt Enable), and OCF0B are set, the Timer/Counter Compare Match Interrupt is executed.
     @inlinable
     @inline(never) // TODO: In the UART code this needed to be 'never', we need to determine what the cause of this is, related to using a Bool here or was it specific to UART.
-    static var outputCompareMatchAInterruptEnabled: Bool {
+    static var outputCompareFlagB: Bool {
         get {
-            return !((timerInterruptMaskRegister & 0b00000010) == 0)
+            return !((timerInterruptMaskRegister & 0b00001000) == 0)
         }
         set {
-            timerInterruptMaskRegister |= UInt8(newValue.hashValue) & 0b00000010
+            timerInterruptMaskRegister |= UInt8(newValue.hashValue) & 0b00001000
+        }
+    }
+    
+    /// Output Compare Flag A
+    /// AKA: OCF0A. See ATtiny13A Datasheet 11.9.7 bit 2.
+    ///
+    /// The OCF0A bit is set when a Compare Match occurs between the Timer/Counter0 and the data in OCR0A – Output Compare Register0. OCF0A is cleared by hardware when executing the cor- responding interrupt handling vector.
+    /// Alternatively, OCF0A is cleared by writing a logic one to the flag. When the I-bit in SREG, OCIE0A (Timer/Counter0 Compare Match Interrupt Enable), and OCF0A are set, the Timer/Counter0 Compare Match Interrupt is executed.
+    @inlinable
+    @inline(never) // TODO: In the UART code this needed to be 'never', we need to determine what the cause of this is, related to using a Bool here or was it specific to UART.
+    static var outputCompareFlagB: Bool {
+        get {
+            return !((timerInterruptMaskRegister & 0b00000100) == 0)
+        }
+        set {
+            timerInterruptMaskRegister |= UInt8(newValue.hashValue) & 0b00000100
+        }
+    }
+    
+    /// Timer/Counter Overflow Flag
+    /// AKA: TOV0. See ATtiny13A Datasheet 11.9.7 bit 1.
+    ///
+    /// The bit TOV0 is set when an overflow occurs in Timer/Counter0. TOV0 is cleared by hardware when executing the corresponding interrupt handling vector. Alternatively, TOV0 is cleared by writing a logic one to the flag.
+    /// When the SREG I-bit, TOIE0 (Timer/Counter0 Overflow Interrupt Enable), and TOV0 are set, the Timer/Counter0 Overflow interrupt is executed.
+    ///
+    /// The setting of this flag is dependent of the WGM0[2:0] bit setting. Refer to Table 11-8, “Wave- form Generation Mode Bit Description” on page 79.
+    @inlinable
+    @inline(never) // TODO: In the UART code this needed to be 'never', we need to determine what the cause of this is, related to using a Bool here or was it specific to UART.
+    static var outputCompareFlagB: Bool {
+        get {
+            return !((timerInterruptMaskRegister & 0b00000100) == 0)
+        }
+        set {
+            timerInterruptMaskRegister |= UInt8(newValue.hashValue) & 0b00000100
         }
     }
 }
