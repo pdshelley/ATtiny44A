@@ -22,8 +22,7 @@
 //}
 
 
-@inlinable
-@inline(__always)
+
 func analogWrite(value: UInt8) {
     timer0.waveformGenerationMode = .fastPWM
     timer0.prescalor = .sixtyFour

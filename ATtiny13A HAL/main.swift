@@ -9,13 +9,13 @@
 //===----------------------------------------------------------------------===//
 
 // Setup for blink()
-arduinoUno.a5.mode(.input)
-arduinoUno.pin11.mode(.output)
-arduinoUno.pin3.mode(.output)
+//arduinoUno.a5.mode(.input)
+//arduinoUno.pin11.mode(.output)
+//arduinoUno.pin3.mode(.output)
 //analogWrite(value: 140)
 
 // Setup for transmit()
-setupSerial(baudRate: 57600)
+//setupSerial(baudRate: 57600)
 
 
 // Setup for recieve()
@@ -38,24 +38,15 @@ func startupAdc() {
     delayMilliSeconds(ms: 1000)
 }
 
-startupAdc()
-var stuff: UInt = 0
-var thing: Bool = false
+//startupAdc()
+//var stuff: UInt = 0
+//var thing: Bool = false
 
 while(true) {
-    //    AnalogeDigitalConverter.voltageReferenceSelection = .Internal11VoltageReferenceWithExternalCapacitorAtAnalogRefererancePin
-    AnalogeDigitalConverter.analogChannelSelectionBits = .ADC5
-    AnalogeDigitalConverter.startConversion = true
-    
-    while(AnalogeDigitalConverter.startConversion){}
-    
-    let adcl = UInt(AnalogeDigitalConverter.ADCL)
-    let adch = UInt(AnalogeDigitalConverter.ADCH)
-    stuff = UInt(AnalogeDigitalConverter.DataRegister)
-    //    let adcl = UInt(AnalogeDigitalConverter.ADCL)
-    //    let adch = UInt(AnalogeDigitalConverter.ADCH)
-    
-    delayMilliSeconds(ms: 1000)
+    arduinoUno.pin13.set(.high)
+    waitOneSecond()
+    arduinoUno.pin13.set(.low)
+    waitOneSecond()
 }
     
 //    startupAdc() //? order of operation
@@ -80,7 +71,7 @@ while(true) {
 //    //write(b)
 //     
 //    analogWrite(value: b)
-}
+//}
 
 //public func analogWrite( value: UInt16) {
 //// TODO: Put the implmentation from the ArduinoAVRCore here. Because HAL will do a lot of the abstraction we will only need a much smaller layer for each specific chipset and this layer will live in the ArduinoCore.

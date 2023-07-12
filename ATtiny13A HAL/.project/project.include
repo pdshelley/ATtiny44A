@@ -1,0 +1,6 @@
+BUILD_DIR:=build
+INCLUDE_PRINTF_FLT:='no'
+OTHER_SWIFT_FILES = HAL.swift HAL_utils.swift Mode.swift module/Timers.swift module/AnalogeDigitalConverter.swift module/GPIO.swift ArduinoAPI.swift DigitalValue.swift
+ADDITIONAL_C_FILES = extras.c
+ADDITIONAL_CPP_FILES =
+ADDITIONAL_ASM_FILES =

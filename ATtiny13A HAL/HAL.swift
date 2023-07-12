@@ -13,7 +13,7 @@
 // See ATmega48A/PA/88A/PA/168A/PA/328/P Datasheet section 14
 public protocol PartialPort {
   associatedtype PortType: BinaryInteger
-  static var portAccessor: PortType { get set }
+  static var dataRegister: PortType { get set }
   static var inputAddress: PortType { get } // TODO: Can you write to this? See 14.4.4
 }
 
@@ -95,9 +95,9 @@ public extension PartialPortPin where PinPartialPort.PortType == PinBit.PinMaskT
   @inline(__always)
   static func set(_ value: DigitalValue) {
     if value == .high {
-      PinPartialPort.portAccessor |= PinBit.pinSetMask
+      PinPartialPort.dataRegister |= PinBit.pinSetMask
     } else {
-      PinPartialPort.portAccessor &= PinBit.pinClearMask
+      PinPartialPort.dataRegister &= PinBit.pinClearMask
     }
   }
 

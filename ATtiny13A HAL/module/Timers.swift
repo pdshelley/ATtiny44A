@@ -19,18 +19,19 @@ typealias timer0 = Timer0
 // NOTE: PRTIM2 needs to be written to zero to enable Timer/Counter2 module. See Datasheet section 18.2 // This was true for the ATmega328p, but probably applies to the ATtiny13A. Double check this.
 struct Timer0 {
     
-    /// 11.9.1 TCCR0A – Timer/Counter Control Register A
-    //
-    //-------------------------------------------------------------------------------
-    // Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0   |
-    //-------------------------------------------------------------------------------
-    // (0x2F)       | COM0A1| COM0A0| COM0B1| COM0B0|   -   |   -   | WGM01 | WGM00
-    //-------------------------------------------------------------------------------
-    // Read/Write   |  R/W  |  R/W  |  R/W  |  R/W  |   R   |   R   |  R/W  |  R/W  |
-    //-------------------------------------------------------------------------------
-    // InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
-    //-------------------------------------------------------------------------------
-    //
+    /// Timer/Counter Control Register A
+    /// AKA TCCR0A See ATtiny13A Datasheet Section 11.9.1.
+    /// ```
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|--------|
+    /// | Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0    |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|--------|
+    /// | (0x2F)       | COM0A1| COM0A0| COM0B1| COM0B0|   -   |   -   | WGM01 | WGM00  |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|--------|
+    /// | Read/Write   |  R/W  |  R/W  |  R/W  |  R/W  |   R   |   R   |  R/W  |  R/W   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|--------|
+    /// | InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0    |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|--------|
+    /// ```
     static var timerCounterControlRegisterA: UInt8 {
         get {
             _rawPointerRead(address: 0x2F)
@@ -40,19 +41,19 @@ struct Timer0 {
         }
     }
     
-    
-    /// 11.9.2 TCCR0B – Timer/Counter Control Register B
-    //
-    //-------------------------------------------------------------------------------
-    // Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0   |
-    //-------------------------------------------------------------------------------
-    // (0x33)       | FOC0A | FOC0B |   -   |   -   | WGM02 | CS02  | CS01  | CS00  |
-    //-------------------------------------------------------------------------------
-    // Read/Write   |  R/W  |  R/W  |   R   |   R   |  R/W  |  R/W  |  R/W  |  R/W  |
-    //-------------------------------------------------------------------------------
-    // InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
-    //-------------------------------------------------------------------------------
-    //
+    /// Timer/Counter Controll Register B
+    /// AKA TCCR0B See ATtiny13A Datasheet Section 11.9.2.
+    ///```
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | (0x33)       | FOC0A | FOC0B |   -   |   -   | WGM02 | CS02  | CS01  | CS00  |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | Read/Write   |  R/W  |  R/W  |   R   |   R   |  R/W  |  R/W  |  R/W  |  R/W  |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    ///```
     static var timerCounterControlRegisterB: UInt8 {
         get {
             _rawPointerRead(address: 0x33)
@@ -64,17 +65,17 @@ struct Timer0 {
     
     
     /// 11.9.3 TCNT0 – Timer/Counter Register
-    //
-    //-------------------------------------------------------------------------------
-    // Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0   |
-    //-------------------------------------------------------------------------------
-    // (0x32)       |                         TCNT0                                 |
-    //-------------------------------------------------------------------------------
-    // Read/Write   |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |
-    //-------------------------------------------------------------------------------
-    // InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
-    //-------------------------------------------------------------------------------
-    //
+    /// ```
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|--------
+    /// | Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|--------
+    /// | (0x32)       |                         TCNT0                                 |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|--------
+    /// | Read/Write   |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|--------
+    /// | InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|--------
+    /// ```
     @inlinable
     @inline(__always)
     static var timerCounterNumber: UInt8 {
@@ -88,17 +89,17 @@ struct Timer0 {
     
     
     /// 11.9.4 OCR0A – Output Compare Register A
-    //
-    //-------------------------------------------------------------------------------
-    // Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0   |
-    //-------------------------------------------------------------------------------
-    // (0x36)       |                         OCR0A                                 |
-    //-------------------------------------------------------------------------------
-    // Read/Write   |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |
-    //-------------------------------------------------------------------------------
-    // InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
-    //-------------------------------------------------------------------------------
-    //
+    /// ```
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | (0x36)       |                         OCR0A                                 |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | Read/Write   |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// ```
     // TODO: I believe OCR2A always needs to be larger than OCR2B. Should we have a safety for this?
     // TODO: Decide about simplifying this with OCR2A
     @inlinable
@@ -114,17 +115,17 @@ struct Timer0 {
     
     
     /// 11.9.5 OCR2B – Output Compare Register B
-    //
-    //-------------------------------------------------------------------------------
-    // Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0   |
-    //-------------------------------------------------------------------------------
-    // (0x29)       |                         OCR0B                                 |
-    //-------------------------------------------------------------------------------
-    // Read/Write   |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |
-    //-------------------------------------------------------------------------------
-    // InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
-    //-------------------------------------------------------------------------------
-    //
+    /// ```
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | (0x29)       |                         OCR0B                                 |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | Read/Write   |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |  R/W  |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// ```
     // TODO: I believe OCR2A always needs to be larger than OCR2B. Should we have a safety for this?
     // TODO: Decide about simplifying this with OCR2B
     @inlinable
@@ -141,17 +142,17 @@ struct Timer0 {
     
     /// 11.9.6 TIMSK0 – Timer/Counter2 Interrupt Mask Register
     /// Note: the positions of OCIE0B, OCIE0A, and TOIE0 are different than the 328P.
-    //
-    //-------------------------------------------------------------------------------
-    // Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0   |
-    //-------------------------------------------------------------------------------
-    // (0x39)       |   -   |   -   |   -   |   -   | OCIE0B| OCIE0A| TOIE0 |   -   |
-    //-------------------------------------------------------------------------------
-    // Read/Write   |   R   |   R   |   R   |   R   |  R/W  |  R/W  |  R/W  |   R   |
-    //-------------------------------------------------------------------------------
-    // InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
-    //-------------------------------------------------------------------------------
-    //
+    /// ```
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | (0x39)       |   -   |   -   |   -   |   -   | OCIE0B| OCIE0A| TOIE0 |   -   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | Read/Write   |   R   |   R   |   R   |   R   |  R/W  |  R/W  |  R/W  |   R   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// ```
     @inlinable
     @inline(__always)
     static var timerInterruptMaskRegister: UInt8 {
@@ -166,17 +167,17 @@ struct Timer0 {
     
     /// 11.9.7 TIFR0 – Timer/Counter2 Interrupt Flag Register
     /// Note: the positions of OCF0B, OCF0A, and TOV0 are different than the 328P.
-    //
-    //-------------------------------------------------------------------------------
-    // Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0   |
-    //-------------------------------------------------------------------------------
-    // (0x38)       |   -   |   -   |   -   |   -   | OCF0B | OCF0A | TOV0  |   -   |
-    //-------------------------------------------------------------------------------
-    // Read/Write   |   R   |   R   |   R   |   R   |  R/W  |  R/W  |  R/W  |   R   |
-    //-------------------------------------------------------------------------------
-    // InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
-    //-------------------------------------------------------------------------------
-    //
+    /// ```
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | (0x38)       |   -   |   -   |   -   |   -   | OCF0B | OCF0A | TOV0  |   -   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | Read/Write   |   R   |   R   |   R   |   R   |  R/W  |  R/W  |  R/W  |   R   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// ```
     @inlinable
     @inline(__always)
     static var timerInterruptFlagRegister: UInt8 {
@@ -190,17 +191,17 @@ struct Timer0 {
     
     
     /// 12.4.1 GTCCR – General Timer/Counter Control Register
-    //
-    //-------------------------------------------------------------------------------
-    // Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0   |
-    //-------------------------------------------------------------------------------
-    // (0x28)       |  TSM  |   -   |   -   |   -   |   -   |   -   |   -   | PSR10 |
-    //-------------------------------------------------------------------------------
-    // Read/Write   |  R/W  |   R   |   R   |   R   |   R   |   R   |   R   |  R/W  |
-    //-------------------------------------------------------------------------------
-    // InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
-    //-------------------------------------------------------------------------------
-    //
+    /// ```
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | Bit          |   7   |   6   |   5   |   4   |   3   |   2   |   1   |   0   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | (0x28)       |  TSM  |   -   |   -   |   -   |   -   |   -   |   -   | PSR10 |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | Read/Write   |  R/W  |   R   |   R   |   R   |   R   |   R   |   R   |  R/W  |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// | InitialValue |   0   |   0   |   0   |   0   |   0   |   0   |   0   |   0   |
+    /// |--------------|-------|-------|-------|-------|-------|-------|-------|-------|
+    /// ```
     @inlinable
     @inline(__always)
     static var generalControlRegister: UInt8 {
@@ -254,33 +255,34 @@ extension Timer0 {
     }
     
     /// See ATtiny13A Datasheet Table 11-8.
-    /// NOTE: Modes #4 and #5 are Reserved and are unavalible for use and thus not included.
+    /// Note: Modes #4 and #5 are Reserved and are unavalible for use and thus not included.
     /// Note: This works for the 8 bit timers but the 16 bit timer has different Waveform Generation Modes.
     ///
     /// Table 11-8. Waveform Generation Mode Bit Description
+    /// ```
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |  Mode  | WGM02 | WGM01 | WGM00 | Mode of Operation  |  TOP  | Update of OCRx at | TOV Flag Set on |
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |    0   |   0   |   0   |   0   | Normal             | 0xFF  | Immediate         | MAX             |
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |    1   |   0   |   0   |   1   | PWM, Phase Correct | 0xFF  | TOP               | BOTTOM          |
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |    2   |   0   |   1   |   0   | CTC                | OCRA  | Immediate         | MAX             |
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |    3   |   0   |   1   |   1   | Fast PWM           | 0xFF  | BOTTOM            | MAX             | // Datasheet says top for Update of OCRx. Seems like a mistake.
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |    4   |   1   |   0   |   0   | Reserved           |   -   |         -         |        -        |
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |    5   |   1   |   0   |   1   | PWM, Phase Correct | OCRA  | TOP               | BOTTOM          |
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |    6   |   1   |   1   |   0   | Reserved           |   -   |         -         |        -        |
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |    7   |   1   |   1   |   1   | Fast PWM           | OCRA  | BOTTOM            | TOP             | // Datasheet says top for Update of OCRx. Seems like a mistake.
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// ```
+    ///  Notes: 1. MAX= 0xFF
+    ///       2. BOTTOM= 0x00
     ///
-    //---------------------------------------------------------------------------------------------------
-    //  Mode  | WGM02 | WGM01 | WGM00 | Mode of Operation  |  TOP  | Update of OCRx at | TOV Flag Set on |
-    //---------------------------------------------------------------------------------------------------
-    //    0   |   0   |   0   |   0   | Normal             | 0xFF  | Immediate         | MAX             |
-    //---------------------------------------------------------------------------------------------------
-    //    1   |   0   |   0   |   1   | PWM, Phase Correct | 0xFF  | TOP               | BOTTOM          |
-    //---------------------------------------------------------------------------------------------------
-    //    2   |   0   |   1   |   0   | CTC                | OCRA  | Immediate         | MAX             |
-    //---------------------------------------------------------------------------------------------------
-    //    3   |   0   |   1   |   1   | Fast PWM           | 0xFF  | BOTTOM            | MAX             | // Datasheet says top for Update of OCRx. Seems like a mistake.
-    //---------------------------------------------------------------------------------------------------
-    //    4   |   1   |   0   |   0   | Reserved           |   -   |         -         |        -        |
-    //---------------------------------------------------------------------------------------------------
-    //    5   |   1   |   0   |   1   | PWM, Phase Correct | OCRA  | TOP               | BOTTOM          |
-    //---------------------------------------------------------------------------------------------------
-    //    6   |   1   |   1   |   0   | Reserved           |   -   |         -         |        -        |
-    //---------------------------------------------------------------------------------------------------
-    //    7   |   1   |   1   |   1   | Fast PWM           | OCRA  | BOTTOM            | TOP             | // Datasheet says top for Update of OCRx. Seems like a mistake.
-    //---------------------------------------------------------------------------------------------------
-    // Notes: 1. MAX= 0xFF
-    //        2. BOTTOM= 0x00
-    //
     enum WaveformGenerationModeOption: UInt8 {
         case normal = 0
         case phaseCorrectPWM = 1
@@ -295,26 +297,27 @@ extension Timer0 {
     /// See ATtiny13A Datasheet Table 11-9.
     ///
     /// Table 11-9. Clock Select Bit Description
-    //
-    //---------------------------------------------------------------------------------------------------
-    //  Mode  | CS02  | CS01  | CS00  | Description                                                     |
-    //---------------------------------------------------------------------------------------------------
-    //    0   |   0   |   0   |   0   | No clock source (Timer/Counter stopped)                         |
-    //---------------------------------------------------------------------------------------------------
-    //    1   |   0   |   0   |   1   | clk (No prescaling)                                             |
-    //---------------------------------------------------------------------------------------------------
-    //    2   |   0   |   1   |   0   | clk /8 (From prescaler)                                         |
-    //---------------------------------------------------------------------------------------------------
-    //    3   |   0   |   1   |   1   | clk /64 (From prescaler)                                        |
-    //---------------------------------------------------------------------------------------------------
-    //    4   |   1   |   0   |   0   | clkI/O/256 (From prescaler)                                     |
-    //---------------------------------------------------------------------------------------------------
-    //    5   |   1   |   0   |   1   | clkI/O/1024 (From prescaler)                                    |
-    //---------------------------------------------------------------------------------------------------
-    //    6   |   1   |   1   |   0   | External clock source on T0 pin. Clock on falling edge.         |
-    //---------------------------------------------------------------------------------------------------
-    //    7   |   1   |   1   |   1   | External clock source on T0 pin. Clock on rising edge.          |
-    //---------------------------------------------------------------------------------------------------
+    /// ```
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |  Mode  | CS02  | CS01  | CS00  | Description                                                     |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |    0   |   0   |   0   |   0   | No clock source (Timer/Counter stopped)                         |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |    1   |   0   |   0   |   1   | clk (No prescaling)                                             |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |    2   |   0   |   1   |   0   | clk /8 (From prescaler)                                         |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |    3   |   0   |   1   |   1   | clk /64 (From prescaler)                                        |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |    4   |   1   |   0   |   0   | clkI/O/256 (From prescaler)                                     |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |    5   |   1   |   0   |   1   | clkI/O/1024 (From prescaler)                                    |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |    6   |   1   |   1   |   0   | External clock source on T0 pin. Clock on falling edge.         |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |    7   |   1   |   1   |   1   | External clock source on T0 pin. Clock on rising edge.          |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// ```
     /// If external pin modes are used for the Timer/Counter0, transitions on the T0 pin will clock the counter even if the pin is configured as an output. This feature allows software control of the counting.
     ///
     enum Prescaling: UInt8 {
@@ -350,10 +353,10 @@ extension Timer0 {
     /// When OC0A is connected to the pin, the function of the COM0A[1:0] bits depends on the WGM0[2:0] bit setting.
     @inlinable
     @inline(__always)
-    static var CompareOutputModeA: Timers.CompareOutputModeOption {
+    static var CompareOutputModeA: Timer0.CompareOutputModeOption {
         get {
             let mode = (timerCounterControlRegisterA & 0b11000000) >> UInt8(6)
-            return Timers.CompareOutputModeOption.init(rawValue: mode) ?? .normal
+            return Timer0.CompareOutputModeOption.init(rawValue: mode) ?? .normal
         }
         set {
             timerCounterControlRegisterA |= (newValue.rawValue & 0b00000011) << UInt8(6)
@@ -372,10 +375,10 @@ extension Timer0 {
     /// When OC0B is connected to the pin, the function of the COM0B[1:0] bits depends on the WGM0[2:0] bit setting.
     @inlinable
     @inline(__always)
-    static var CompareOutputModeB: Timers.CompareOutputModeOption {
+    static var CompareOutputModeB: Timer0.CompareOutputModeOption {
         get {
             let mode = (timerCounterControlRegisterA & 0b00110000) >> 4
-            return Timers.CompareOutputModeOption.init(rawValue: mode) ?? .normal
+            return Timer0.CompareOutputModeOption.init(rawValue: mode) ?? .normal
         }
         set {
             timerCounterControlRegisterA |= (newValue.rawValue & 0b00000011) << UInt8(4)
@@ -386,34 +389,35 @@ extension Timer0 {
     /// See ATtiny13A Datasheet Table 11-9.
     ///
     /// Table 11-9. Clock Select Bit Description
-    //
-    //---------------------------------------------------------------------------------------------------
-    //  Mode  | CS02  | CS01  | CS00  | Description                                                     |
-    //---------------------------------------------------------------------------------------------------
-    //    0   |   0   |   0   |   0   | No clock source (Timer/Counter stopped)                         |
-    //---------------------------------------------------------------------------------------------------
-    //    1   |   0   |   0   |   1   | clk (No prescaling)                                             |
-    //---------------------------------------------------------------------------------------------------
-    //    2   |   0   |   1   |   0   | clk /8 (From prescaler)                                         |
-    //---------------------------------------------------------------------------------------------------
-    //    3   |   0   |   1   |   1   | clk /64 (From prescaler)                                        |
-    //---------------------------------------------------------------------------------------------------
-    //    4   |   1   |   0   |   0   | clkI/O/256 (From prescaler)                                     |
-    //---------------------------------------------------------------------------------------------------
-    //    5   |   1   |   0   |   1   | clkI/O/1024 (From prescaler)                                    |
-    //---------------------------------------------------------------------------------------------------
-    //    6   |   1   |   1   |   0   | External clock source on T0 pin. Clock on falling edge.         |
-    //---------------------------------------------------------------------------------------------------
-    //    7   |   1   |   1   |   1   | External clock source on T0 pin. Clock on rising edge.          |
-    //---------------------------------------------------------------------------------------------------
+    /// ```
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |  Mode  | CS02  | CS01  | CS00  | Description                                                     |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |    0   |   0   |   0   |   0   | No clock source (Timer/Counter stopped)                         |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |    1   |   0   |   0   |   1   | clk (No prescaling)                                             |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |    2   |   0   |   1   |   0   | clk /8 (From prescaler)                                         |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |    3   |   0   |   1   |   1   | clk /64 (From prescaler)                                        |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |    4   |   1   |   0   |   0   | clkI/O/256 (From prescaler)                                     |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |    5   |   1   |   0   |   1   | clkI/O/1024 (From prescaler)                                    |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |    6   |   1   |   1   |   0   | External clock source on T0 pin. Clock on falling edge.         |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// |    7   |   1   |   1   |   1   | External clock source on T0 pin. Clock on rising edge.          |
+    /// |--------|-------|-------|-------|-----------------------------------------------------------------|
+    /// ```
     /// If external pin modes are used for the Timer/Counter0, transitions on the T0 pin will clock the counter even if the pin is configured as an output. This feature allows software control of the counting.
     ///
     @inlinable
     @inline(__always)
-    static var prescalor: Timers.Prescaling {
+    static var prescalor: Timer0.Prescaling {
         get {
             let mode = timerCounterControlRegisterA & 0b00000111
-            return Timers.Prescaling.init(rawValue: mode) ?? .noClockSource
+            return Timer0.Prescaling.init(rawValue: mode) ?? .noClockSource
         }
         set {
             timerCounterControlRegisterB |= newValue.rawValue & 0b00000111
@@ -430,34 +434,36 @@ extension Timer0 {
     ///
     /// Table 11-8. Waveform Generation Mode Bit Description
     ///
-    //---------------------------------------------------------------------------------------------------
-    //  Mode  | WGM02 | WGM01 | WGM00 | Mode of Operation  |  TOP  | Update of OCRx at | TOV Flag Set on |
-    //---------------------------------------------------------------------------------------------------
-    //    0   |   0   |   0   |   0   | Normal             | 0xFF  | Immediate         | MAX             |
-    //---------------------------------------------------------------------------------------------------
-    //    1   |   0   |   0   |   1   | PWM, Phase Correct | 0xFF  | TOP               | BOTTOM          |
-    //---------------------------------------------------------------------------------------------------
-    //    2   |   0   |   1   |   0   | CTC                | OCRA  | Immediate         | MAX             |
-    //---------------------------------------------------------------------------------------------------
-    //    3   |   0   |   1   |   1   | Fast PWM           | 0xFF  | BOTTOM            | MAX             | // Datasheet says top for Update of OCRx. Seems like a mistake.
-    //---------------------------------------------------------------------------------------------------
-    //    4   |   1   |   0   |   0   | Reserved           |   -   |         -         |        -        |
-    //---------------------------------------------------------------------------------------------------
-    //    5   |   1   |   0   |   1   | PWM, Phase Correct | OCRA  | TOP               | BOTTOM          |
-    //---------------------------------------------------------------------------------------------------
-    //    6   |   1   |   1   |   0   | Reserved           |   -   |         -         |        -        |
-    //---------------------------------------------------------------------------------------------------
-    //    7   |   1   |   1   |   1   | Fast PWM           | OCRA  | BOTTOM            | TOP             | // Datasheet says top for Update of OCRx. Seems like a mistake.
-    //---------------------------------------------------------------------------------------------------
-    // Notes: 1. MAX= 0xFF
-    //        2. BOTTOM= 0x00
-    //
+    /// ```
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |  Mode  | WGM02 | WGM01 | WGM00 | Mode of Operation  |  TOP  | Update of OCRx at | TOV Flag Set on |
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |    0   |   0   |   0   |   0   | Normal             | 0xFF  | Immediate         | MAX             |
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |    1   |   0   |   0   |   1   | PWM, Phase Correct | 0xFF  | TOP               | BOTTOM          |
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |    2   |   0   |   1   |   0   | CTC                | OCRA  | Immediate         | MAX             |
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |    3   |   0   |   1   |   1   | Fast PWM           | 0xFF  | BOTTOM            | MAX             | // Datasheet says top for Update of OCRx. Seems like a mistake.
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |    4   |   1   |   0   |   0   | Reserved           |   -   |         -         |        -        |
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |    5   |   1   |   0   |   1   | PWM, Phase Correct | OCRA  | TOP               | BOTTOM          |
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |    6   |   1   |   1   |   0   | Reserved           |   -   |         -         |        -        |
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// |    7   |   1   |   1   |   1   | Fast PWM           | OCRA  | BOTTOM            | TOP             | // Datasheet says top for Update of OCRx. Seems like a mistake.
+    /// |--------|-------|-------|-------|--------------------|-------|-------------------|-----------------
+    /// ```
+    /// Notes: 1. MAX= 0xFF
+    ///      2. BOTTOM= 0x00
+    ///
     @inlinable
     @inline(__always)
-    static var waveformGenerationMode: Timers.WaveformGenerationModeOption {
+    static var waveformGenerationMode: Timer0.WaveformGenerationModeOption {
         get {
             let mode = ((timerCounterControlRegisterB & 0b00001000) >> 1) | (timerCounterControlRegisterA & 0b00000011)
-            return Timers.WaveformGenerationModeOption.init(rawValue: mode) ?? .normal
+            return Timer0.WaveformGenerationModeOption.init(rawValue: mode) ?? .normal
         }
         set {
             timerCounterControlRegisterA |= (newValue.rawValue & 0b00000011)
@@ -504,7 +510,7 @@ extension Timer0 {
     ///  TOV0 bit is set in the Timer/Counter 0 Interrupt Flag Reg- ister – TIFR0.
     @inlinable
     @inline(never) // TODO: In the UART code this needed to be 'never', we need to determine what the cause of this is, related to using a Bool here or was it specific to UART.
-    static var outputCompareMatchAInterruptEnabled: Bool {
+    static var overflowInterruptEnabled: Bool {
         get {
             return !((timerInterruptMaskRegister & 0b00000010) == 0)
         }
@@ -536,7 +542,7 @@ extension Timer0 {
     /// Alternatively, OCF0A is cleared by writing a logic one to the flag. When the I-bit in SREG, OCIE0A (Timer/Counter0 Compare Match Interrupt Enable), and OCF0A are set, the Timer/Counter0 Compare Match Interrupt is executed.
     @inlinable
     @inline(never) // TODO: In the UART code this needed to be 'never', we need to determine what the cause of this is, related to using a Bool here or was it specific to UART.
-    static var outputCompareFlagB: Bool {
+    static var outputCompareFlagA: Bool {
         get {
             return !((timerInterruptMaskRegister & 0b00000100) == 0)
         }
@@ -554,7 +560,7 @@ extension Timer0 {
     /// The setting of this flag is dependent of the WGM0[2:0] bit setting. Refer to Table 11-8, “Wave- form Generation Mode Bit Description” on page 79.
     @inlinable
     @inline(never) // TODO: In the UART code this needed to be 'never', we need to determine what the cause of this is, related to using a Bool here or was it specific to UART.
-    static var outputCompareFlagB: Bool {
+    static var overflowFlag: Bool {
         get {
             return !((timerInterruptMaskRegister & 0b00000010) == 0)
         }
@@ -570,7 +576,7 @@ extension Timer0 {
     /// Timer/Counter is halted and can be configured without the risk of advanc- ing during configuration. When the TSM bit is written to zero, the PSR10 bit is cleared by hardware, and the Timer/Counter start counting.
     @inlinable
     @inline(never) // TODO: In the UART code this needed to be 'never', we need to determine what the cause of this is, related to using a Bool here or was it specific to UART.
-    static var outputCompareFlagB: Bool {
+    static var synchronizationMode: Bool {
         get {
             return !((generalControlRegister & 0b10000000) == 0)
         }
@@ -585,7 +591,7 @@ extension Timer0 {
     /// When this bit is one, the Timer/Counter0 prescaler will be Reset. This bit is normally cleared immediately by hardware, except if the TSM bit is set.
     @inlinable
     @inline(never) // TODO: In the UART code this needed to be 'never', we need to determine what the cause of this is, related to using a Bool here or was it specific to UART.
-    static var outputCompareFlagB: Bool {
+    static var prescalerReset: Bool {
         get {
             return !((generalControlRegister & 0b00000001) == 0)
         }
