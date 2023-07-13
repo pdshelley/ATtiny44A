@@ -1,8 +1,0 @@
-main.swift:52:9: warning: initialization of immutable value 'adcl' was never used; consider replacing with assignment to '_' or removing it
-    let adcl = UInt(AnalogeDigitalConverter.ADCL)
-    ~~~~^~~~
-    _
-main.swift:53:9: warning: initialization of immutable value 'adch' was never used; consider replacing with assignment to '_' or removing it
-    let adch = UInt(AnalogeDigitalConverter.ADCH)
-    ~~~~^~~~
-    _

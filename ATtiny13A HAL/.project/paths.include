@@ -1,10 +1,10 @@
-MODULE_INCLUDE_DIRECTORIES=-I"/Users/paulshelley/Library/Application Support/SwiftForArduino/S4A/161/Modules" -I"/Users/paulshelley/Library/Application Support/SwiftForArduino/Extensions/Modules" -I"/Users/paulshelley/Documents/SwiftForArduino/Exports"
-CPP_EXTRA_IMPORTS=-I"/Users/paulshelley/Library/Application Support/SwiftForArduino/S4A/161/Modules/Arduino"
-MODULE_MAKE_DOCS_INCLUDE_DIRECTORIES=-I="/Users/paulshelley/Library/Application Support/SwiftForArduino/S4A/161/Modules" -I="/Users/paulshelley/Library/Application Support/SwiftForArduino/Extensions/Modules" -I="/Users/paulshelley/Documents/SwiftForArduino/Exports"
-EXTENSION_MODULES_DIRECTORY=/Users/paulshelley/Library/Application Support/SwiftForArduino/Extensions/Modules
-EXPORT_MODULE_DIRECTORY=/Users/paulshelley/Documents/SwiftForArduino/Exports
-MODULE_LINK_DIRECTORIES=-L"/Users/paulshelley/Library/Application Support/SwiftForArduino/S4A/161/Modules" -L"/Users/paulshelley/Library/Application Support/SwiftForArduino/Extensions/Modules" -L"/Users/paulshelley/Documents/SwiftForArduino/Exports"
-BUILD_EXTENSIONS_PATH=/Users/paulshelley/Library/Application Support/SwiftForArduino/Extensions/Build
-UPLOAD_EXTENSIONS_PATH=/Users/paulshelley/Library/Application Support/SwiftForArduino/Extensions/Upload
 SCRIPTDIR=/Applications/Swift For Arduino.app/Contents/XPCServices/BuildEngine.xpc/Contents/Resources
+MODULE_MAKE_DOCS_INCLUDE_DIRECTORIES=-I="/Users/paulshelley/Library/Application Support/SwiftForArduino/S4A/161/Modules" -I="/Users/paulshelley/Library/Application Support/SwiftForArduino/Extensions/Modules" -I="/Users/paulshelley/Documents/SwiftForArduino/Exports"
+UPLOAD_EXTENSIONS_PATH=/Users/paulshelley/Library/Application Support/SwiftForArduino/Extensions/Upload
+EXPORT_MODULE_DIRECTORY=/Users/paulshelley/Documents/SwiftForArduino/Exports
+BUILD_EXTENSIONS_PATH=/Users/paulshelley/Library/Application Support/SwiftForArduino/Extensions/Build
+MODULE_LINK_DIRECTORIES=-L"/Users/paulshelley/Library/Application Support/SwiftForArduino/S4A/161/Modules" -L"/Users/paulshelley/Library/Application Support/SwiftForArduino/Extensions/Modules" -L"/Users/paulshelley/Documents/SwiftForArduino/Exports"
+CPP_EXTRA_IMPORTS=-I"/Users/paulshelley/Library/Application Support/SwiftForArduino/S4A/161/Modules/Arduino"
+EXTENSION_MODULES_DIRECTORY=/Users/paulshelley/Library/Application Support/SwiftForArduino/Extensions/Modules
 SOURCE_DIR=/Users/paulshelley/Documents/Git/ATtiny44A/ATtiny13A HAL
+MODULE_INCLUDE_DIRECTORIES=-I"/Users/paulshelley/Library/Application Support/SwiftForArduino/S4A/161/Modules" -I"/Users/paulshelley/Library/Application Support/SwiftForArduino/Extensions/Modules" -I"/Users/paulshelley/Documents/SwiftForArduino/Exports"

@@ -78,7 +78,7 @@ func analogWrite(value: UInt8) {
 //func rxBufferRead() -> UInt8? {
 //    guard let rxRingBuffer = rxRingBuffer else {
 //        return nil
-////        throw RxBufferErrors.noRingBuffer
+//        throw RxBufferErrors.noRingBuffer
 //    }
 //
 //    // block until data is available
@@ -106,7 +106,7 @@ func analogWrite(value: UInt8) {
 //func activateRxInterruptHandler() {
 //    guard rxRingBuffer != nil else {
 //        return
-////        throw RxBufferErrors.cannotAllocateRingBuffer
+//        throw RxBufferErrors.cannotAllocateRingBuffer
 //    }
 //
 //    USART_RX_vect = rxInterruptHandler
