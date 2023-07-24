@@ -19,17 +19,17 @@ struct GPIO {
         /// AKA: PORTB. See ATtiny13A Datasheet section 10.4.2.
         @inlinable
         @inline(__always)
-        static var dataRegister: UInt8 { get { _rawPointerRead(address: 0x18) } set { _rawPointerWrite(address: 0x18, value: newValue) } }
+        static var dataRegister: UInt8 { get { _rawPointerRead(address: 0x38) } set { _rawPointerWrite(address: 0x38, value: newValue) } }
 
         /// AKA: DDRB. See ATtiny13A Datasheet section 10.4.3.
         @inlinable
         @inline(__always)
-        static var dataDirection: UInt8 { get { _rawPointerRead(address: 0x17) } set { _rawPointerWrite(address: 0x17, value: newValue) } }
+        static var dataDirection: UInt8 { get { _rawPointerRead(address: 0x37) } set { _rawPointerWrite(address: 0x37, value: newValue) } }
 
         /// AKA: PINB. See ATtiny13A Datasheet section 10.4.4.
         @inlinable
         @inline(__always)
-        static var inputAddress: UInt8 { get { _rawPointerRead(address: 0x16) } set { _rawPointerWrite(address: 0x16, value: newValue) } }
+        static var inputAddress: UInt8 { get { _rawPointerRead(address: 0x36) } set { _rawPointerWrite(address: 0x36, value: newValue) } }
     }
     
     enum pdip8 {
