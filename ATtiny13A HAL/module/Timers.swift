@@ -34,10 +34,10 @@ struct Timer0 {
     /// ```
     static var timerCounterControlRegisterA: UInt8 {
         get {
-            _rawPointerRead(address: 0x2F)
+            _rawPointerRead(address: 0x4F)
         }
         set {
-            _rawPointerWrite(address: 0x2F, value: newValue)
+            _rawPointerWrite(address: 0x4F, value: newValue)
         }
     }
     
@@ -56,10 +56,10 @@ struct Timer0 {
     ///```
     static var timerCounterControlRegisterB: UInt8 {
         get {
-            _rawPointerRead(address: 0x33)
+            _rawPointerRead(address: 0x53)
         }
         set {
-            _rawPointerWrite(address: 0x33, value: newValue)
+            _rawPointerWrite(address: 0x53, value: newValue)
         }
     }
     
@@ -80,10 +80,10 @@ struct Timer0 {
     @inline(__always)
     static var timerCounterNumber: UInt8 {
         get {
-            return _rawPointerRead(address: 0x32)
+            return _rawPointerRead(address: 0x52)
         }
         set {
-            _rawPointerWrite(address: 0x32, value: newValue)
+            _rawPointerWrite(address: 0x52, value: newValue)
         }
     }
     
@@ -106,10 +106,10 @@ struct Timer0 {
     @inline(__always)
     static var outputCompareRegisterA: UInt8 {
         get {
-            return _rawPointerRead(address: 0x36)
+            return _rawPointerRead(address: 0x56)
         }
         set {
-            _rawPointerWrite(address: 0x36, value: newValue)
+            _rawPointerWrite(address: 0x56, value: newValue)
         }
     }
     
@@ -132,10 +132,10 @@ struct Timer0 {
     @inline(__always)
     static var outputCompareRegisterB: UInt8 {
         get {
-            return _rawPointerRead(address: 0x29)
+            return _rawPointerRead(address: 0x49)
         }
         set {
-            _rawPointerWrite(address: 0x29, value: newValue)
+            _rawPointerWrite(address: 0x49, value: newValue)
         }
     }
     
@@ -157,10 +157,10 @@ struct Timer0 {
     @inline(__always)
     static var timerInterruptMaskRegister: UInt8 {
         get {
-            return _rawPointerRead(address: 0x39)
+            return _rawPointerRead(address: 0x59)
         }
         set {
-            _rawPointerWrite(address: 0x39, value: newValue)
+            _rawPointerWrite(address: 0x59, value: newValue)
         }
     }
     
@@ -182,10 +182,10 @@ struct Timer0 {
     @inline(__always)
     static var timerInterruptFlagRegister: UInt8 {
         get {
-            return _rawPointerRead(address: 0x38)
+            return _rawPointerRead(address: 0x58)
         }
         set {
-            _rawPointerWrite(address: 0x38, value: newValue)
+            _rawPointerWrite(address: 0x58, value: newValue)
         }
     }
     
@@ -206,10 +206,10 @@ struct Timer0 {
     @inline(__always)
     static var generalControlRegister: UInt8 {
         get {
-            return _rawPointerRead(address: 0x28)
+            return _rawPointerRead(address: 0x48) // TODO
         }
         set {
-            _rawPointerWrite(address: 0x28, value: newValue)
+            _rawPointerWrite(address: 0x48, value: newValue)
         }
     }
 }
@@ -600,69 +600,4 @@ extension Timer0 {
         }
     }
 }
-
-
-
-
-//protocol TimerPort {
-//    // this will probably(?) always be UInt8, but is useful for preventing the protocol
-//    // from ever accidentally being used as an existential type
-//    //    associatedtype PortDataType: BinaryInteger // TODO: Fix this.
-//
-//    static var timerCounterControlRegisterA: UInt8 { get set }
-//    static var timerCounterControlRegisterB: UInt8 { get set }
-//    static var timerCounterNumber:  UInt8 { get set }
-//    static var outputCompareRegisterA:  UInt8 { get set }
-//    static var outputCompareRegisterA:  UInt8 { get set }
-//    static var timerInterruptMaskRegister: UInt8 { get set }
-//    static var timerInterruptFlagRegister:  UInt8 { get set }
-//}
-//
-//protocol Timer8Bit, TimerPort {
-//}
-//
-//protocol Timer10Bit, TimerPort {
-//}
-//
-//protocol Timer16Bit, TimerPort {
-//}
-//
-//protocol AsycTimer {
-//    static var ASSR:   UInt8 { get set }
-//    static var GTCCR:  UInt8 { get set }
-//}
-//
-//protocol PWMTimer {
-//    // Note: The positions of OCIE0B, OCIE0A, and TOIE0 on the ATtiny13A are different than the 328P.
-//    // Note: The positions of OCF0B, OCF0A, and TOV0 on the ATtiny13A are different than the 328P.
-//
-//
-//
-//    // Note: I believe when there is No External Clock then these are the Prescalors
-//    enum Prescaling: UInt8 {
-//        case noClockSource = 0 // No Clock Source - counter is off
-//        case none = 1 // clkT2S - No Prescaler
-//        case eight = 2 // clkT2S/8
-//        case thirtyTwo = 3 // clkT2S/32
-//        case sixtyFour = 4 // clkT2S/64
-//        case oneTwentyEight = 5 // clkT2S/128
-//        case twoFiftySix = 6 // clkT2S/256
-//        case tenTwentyFour = 7 // clkT2S/1024
-//    }
-//
-//    // Note: I believe when there is an External Clock then these are the Prescalors
-//    enum Prescaling: UInt8 {
-//        case noClockSource = 0
-//        case none = 1
-//        case eight = 2
-//        case sixtyFour = 3
-//        case twoFiftySix = 4
-//        case tenTwentyFour = 5
-//        case externalClockOnFallingEdge = 6
-//        case externalClockOnRisingEdge = 7
-//    }
-//}
-
-
-
 
