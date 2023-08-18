@@ -1,0 +1,6 @@
+module <module> {
+	header "interrupt.h"
+	header "extras.h"
+	export *
+    link "hlm_<module>"
+}

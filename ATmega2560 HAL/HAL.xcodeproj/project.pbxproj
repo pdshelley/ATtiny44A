@@ -1,0 +1,90 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXFileReference section */
+		4734E7322A5DB4A4005BFB3B /* GPIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GPIO.swift; path = module/GPIO.swift; sourceTree = "<group>"; };
+		DA035A6D29B7F7240057EE51 /* extras.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = extras.c; sourceTree = "<group>"; };
+		DA035A6E29B7F7240057EE51 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		DA035A7029B7F7370057EE51 /* HAL.swift4p */ = {isa = PBXFileReference; lastKnownFileType = text; path = HAL.swift4p; sourceTree = "<group>"; };
+		DA035A7129B7F76E0057EE51 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		DA035A7229B7F76E0057EE51 /* HAL_utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAL_utils.swift; sourceTree = "<group>"; };
+		DA035A7429B7F76E0057EE51 /* DigitalValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalValue.swift; sourceTree = "<group>"; };
+		DA035A7529B7F76E0057EE51 /* HAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAL.swift; sourceTree = "<group>"; };
+		DA035A7829B7F7760057EE51 /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		DA035A5D29B78DC50057EE51 = {
+			isa = PBXGroup;
+			children = (
+				DA035A7029B7F7370057EE51 /* HAL.swift4p */,
+				DA035A6D29B7F7240057EE51 /* extras.c */,
+				DA035A6E29B7F7240057EE51 /* main.h */,
+				DA035A7429B7F76E0057EE51 /* DigitalValue.swift */,
+				DA035A7229B7F76E0057EE51 /* HAL_utils.swift */,
+				DA035A7529B7F76E0057EE51 /* HAL.swift */,
+				DA035A7129B7F76E0057EE51 /* main.swift */,
+				DA035A7829B7F7760057EE51 /* Mode.swift */,
+				4734E7322A5DB4A4005BFB3B /* GPIO.swift */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		DA035A5E29B78DC50057EE51 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1420;
+			};
+			buildConfigurationList = DA035A6129B78DC50057EE51 /* Build configuration list for PBXProject "HAL" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DA035A5D29B78DC50057EE51;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		DA035A6229B78DC50057EE51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		DA035A6329B78DC50057EE51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DA035A6129B78DC50057EE51 /* Build configuration list for PBXProject "HAL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA035A6229B78DC50057EE51 /* Debug */,
+				DA035A6329B78DC50057EE51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DA035A5E29B78DC50057EE51 /* Project object */;
+}

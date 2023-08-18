@@ -1,0 +1,8 @@
+{
+"main.swift":{"llvm-ir":"build/main.ll","llvm-bc":"build/main.bc","raw-sil":"build/main.sil","sil":"build/main.csil"},
+"HAL_utils.swift":{"llvm-ir":"build/HAL_utils.ll","llvm-bc":"build/HAL_utils.bc","raw-sil":"build/HAL_utils.sil","sil":"build/HAL_utils.csil"},
+"Mode.swift":{"llvm-ir":"build/Mode.ll","llvm-bc":"build/Mode.bc","raw-sil":"build/Mode.sil","sil":"build/Mode.csil"},
+"module/GPIO.swift":{"llvm-ir":"build/GPIO.ll","llvm-bc":"build/GPIO.bc","raw-sil":"build/GPIO.sil","sil":"build/GPIO.csil"},
+"DigitalValue.swift":{"llvm-ir":"build/DigitalValue.ll","llvm-bc":"build/DigitalValue.bc","raw-sil":"build/DigitalValue.sil","sil":"build/DigitalValue.csil"},
+"HAL.swift":{"llvm-ir":"build/HAL.ll","llvm-bc":"build/HAL.bc","raw-sil":"build/HAL.sil","sil":"build/HAL.csil"},
+}

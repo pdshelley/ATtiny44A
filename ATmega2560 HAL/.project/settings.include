@@ -1,0 +1,8 @@
+DEBUGMAKE=true
+ARDUINO_LIB_CLANG_OPTIONS=-DARDUINO=101 -I"/Users/paulshelley/Library/Application Support/SwiftForArduino/S4A/161/Modules"
+SWIFT_RUNTIME_SCANNER=-Xfrontend -no-runtime-verify
+SCAN_EXPORTS_FOR_MODULES=yes
+CPP_EXTRA_DEFINES=-DARDUINO=100
+KEEP_TEMPS=yes
+MAKE_TARGET=all
+VERBOSE=yes

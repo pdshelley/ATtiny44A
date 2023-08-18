@@ -1,0 +1,12 @@
+files:
+- main.swift
+- DigitalValue.swift
+- extras.c
+- HAL.swift
+- HAL_utils.swift
+- main.h
+- Mode.swift
+- module/GPIO.swift
+settings:
+  INCLUDE_PRINTF_FLT: 'no'
+  BUILD_DIR: build

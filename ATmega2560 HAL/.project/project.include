@@ -1,0 +1,6 @@
+INCLUDE_PRINTF_FLT:='no'
+BUILD_DIR:=build
+OTHER_SWIFT_FILES = HAL_utils.swift Mode.swift module/GPIO.swift DigitalValue.swift HAL.swift
+ADDITIONAL_C_FILES = extras.c
+ADDITIONAL_CPP_FILES =
+ADDITIONAL_ASM_FILES =
