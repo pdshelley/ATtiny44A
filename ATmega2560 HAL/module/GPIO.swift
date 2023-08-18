@@ -12,7 +12,7 @@
 /// GPIO
 struct GPIO { // TODO: I think I want to rename this struct to AVR5 or something similar. This will probably be the HAL layer for the avr5 core and I'll make a wrapper with a common HAL API that wraps this.
 
-    enum PortA: Port {
+    enum PORTA: Port {
 
         /// AKA: PORTA. See ATMega328p Datasheet section 14.4.2. // TODO: How should we make the Datasheet refrence more generic? Include more of this documentation directly in the code?
         // Note: Should we make an alias for this named PORTA for people that want to have "Direct Access" to ports? This is more important for registers that are used for
@@ -32,7 +32,7 @@ struct GPIO { // TODO: I think I want to rename this struct to AVR5 or something
         static var inputAddress: UInt8 { get { _rawPointerRead(address: 0x20) } set { _rawPointerWrite(address: 0x20, value: newValue) } }
     }
 
-    enum PortB: Port {
+    enum PORTB: Port {
 
         /// AKA: PORTB. See ATMega328p Datasheet section 14.4.2. // TODO: How should we make the Datasheet refrence more generic? Include more of this documentation directly in the code?
         // Note: Should we make an alias for this named PORTB for people that want to have "Direct Access" to ports? This is more important for registers that are used for
@@ -52,7 +52,7 @@ struct GPIO { // TODO: I think I want to rename this struct to AVR5 or something
         static var inputAddress: UInt8 { get { _rawPointerRead(address: 0x23) } set { _rawPointerWrite(address: 0x23, value: newValue) } }
     }
 
-    enum PortC: Port {
+    enum PORTC: Port {
 
         /// AKA: PORTC. See ATMega328p Datasheet section 14.4.2. // TODO: How should we make the Datasheet refrence more generic? Include more of this documentation directly in the code?
         // Note: Should we make an alias for this named PORTC for people that want to have "Direct Access" to ports? This is more important for registers that are used for
@@ -72,7 +72,7 @@ struct GPIO { // TODO: I think I want to rename this struct to AVR5 or something
         static var inputAddress: UInt8 { get { _rawPointerRead(address: 0x26) } set { _rawPointerWrite(address: 0x26, value: newValue) } }
     }
 
-    enum PortD: Port {
+    enum PORTD: Port {
 
         /// AKA: PORTD. See ATMega328p Datasheet section 14.4.2. // TODO: How should we make the Datasheet refrence more generic? Include more of this documentation directly in the code?
         // Note: Should we make an alias for this named PORTD for people that want to have "Direct Access" to ports? This is more important for registers that are used for
@@ -92,7 +92,7 @@ struct GPIO { // TODO: I think I want to rename this struct to AVR5 or something
         static var inputAddress: UInt8 { get { _rawPointerRead(address: 0x29) } set { _rawPointerWrite(address: 0x29, value: newValue) } }
     }
 
-    enum PortE: Port {
+    enum PORTE: Port {
 
         /// AKA: PORTE. See ATMega328p Datasheet section 14.4.2. // TODO: How should we make the Datasheet refrence more generic? Include more of this documentation directly in the code?
         // Note: Should we make an alias for this named PORTE for people that want to have "Direct Access" to ports? This is more important for registers that are used for
@@ -112,7 +112,7 @@ struct GPIO { // TODO: I think I want to rename this struct to AVR5 or something
         static var inputAddress: UInt8 { get { _rawPointerRead(address: 0x2C) } set { _rawPointerWrite(address: 0x2C, value: newValue) } }
     }
 
-    enum PortF: Port {
+    enum PORTF: Port {
 
         /// AKA: PORTF. See ATMega328p Datasheet section 14.4.2. // TODO: How should we make the Datasheet refrence more generic? Include more of this documentation directly in the code?
         // Note: Should we make an alias for this named PORTF for people that want to have "Direct Access" to ports? This is more important for registers that are used for
@@ -132,7 +132,7 @@ struct GPIO { // TODO: I think I want to rename this struct to AVR5 or something
         static var inputAddress: UInt8 { get { _rawPointerRead(address: 0x2F) } set { _rawPointerWrite(address: 0x2F, value: newValue) } }
     }
 
-    enum PortG: Port {
+    enum PORTG: Port {
 
         /// AKA: PORTG. See ATMega328p Datasheet section 14.4.2. // TODO: How should we make the Datasheet refrence more generic? Include more of this documentation directly in the code?
         // Note: Should we make an alias for this named PORTG for people that want to have "Direct Access" to ports? This is more important for registers that are used for
@@ -152,7 +152,7 @@ struct GPIO { // TODO: I think I want to rename this struct to AVR5 or something
         static var inputAddress: UInt8 { get { _rawPointerRead(address: 0x32) } set { _rawPointerWrite(address: 0x32, value: newValue) } }
     }
 
-    enum PortH: Port {
+    enum PORTH: Port {
 
         /// AKA: PORTH. See ATMega328p Datasheet section 14.4.2. // TODO: How should we make the Datasheet refrence more generic? Include more of this documentation directly in the code?
         // Note: Should we make an alias for this named PORTH for people that want to have "Direct Access" to ports? This is more important for registers that are used for
@@ -172,7 +172,7 @@ struct GPIO { // TODO: I think I want to rename this struct to AVR5 or something
         static var inputAddress: UInt8 { get { _rawPointerRead(address: 0x100) } set { _rawPointerWrite(address: 0x100, value: newValue) } }
     }
 
-    enum PortJ: Port {
+    enum PORTJ: Port {
 
         /// AKA: PORTJ. See ATMega328p Datasheet section 14.4.2. // TODO: How should we make the Datasheet refrence more generic? Include more of this documentation directly in the code?
         // Note: Should we make an alias for this named PORTJ for people that want to have "Direct Access" to ports? This is more important for registers that are used for
@@ -192,7 +192,7 @@ struct GPIO { // TODO: I think I want to rename this struct to AVR5 or something
         static var inputAddress: UInt8 { get { _rawPointerRead(address: 0x103) } set { _rawPointerWrite(address: 0x103, value: newValue) } }
     }
 
-    enum PortK: Port {
+    enum PORTK: Port {
 
         /// AKA: PORTK. See ATMega328p Datasheet section 14.4.2. // TODO: How should we make the Datasheet refrence more generic? Include more of this documentation directly in the code?
         // Note: Should we make an alias for this named PORTK for people that want to have "Direct Access" to ports? This is more important for registers that are used for
@@ -212,7 +212,7 @@ struct GPIO { // TODO: I think I want to rename this struct to AVR5 or something
         static var inputAddress: UInt8 { get { _rawPointerRead(address: 0x106) } set { _rawPointerWrite(address: 0x106, value: newValue) } }
     }
 
-    enum PortL: Port {
+    enum PORTL: Port {
 
         /// AKA: PORTL. See ATMega328p Datasheet section 14.4.2. // TODO: How should we make the Datasheet refrence more generic? Include more of this documentation directly in the code?
         // Note: Should we make an alias for this named PORTL for people that want to have "Direct Access" to ports? This is more important for registers that are used for
@@ -231,105 +231,118 @@ struct GPIO { // TODO: I think I want to rename this struct to AVR5 or something
         @inline(__always)
         static var inputAddress: UInt8 { get { _rawPointerRead(address: 0x109) } set { _rawPointerWrite(address: 0x109, value: newValue) } }
     }
-    
-    typealias pa0 = DigitalPin<PortA,Bit0>
-    typealias pa1 = DigitalPin<PortA,Bit1>
-    typealias pa2 = DigitalPin<PortA,Bit2>
-    typealias pa3 = DigitalPin<PortA,Bit3>
-    typealias pa4 = DigitalPin<PortA,Bit4>
-    typealias pa5 = DigitalPin<PortA,Bit5>
-    typealias pa6 = DigitalPin<PortA,Bit5>
-    typealias pa7 = DigitalPin<PortA,Bit5>
-    
-    typealias pb0 = DigitalPin<PortB,Bit0>
-    typealias pb1 = DigitalPin<PortB,Bit1>
-    typealias pb2 = DigitalPin<PortB,Bit2>
-    typealias pb3 = DigitalPin<PortB,Bit3>
-    typealias pb4 = DigitalPin<PortB,Bit4>
-    typealias pb5 = DigitalPin<PortB,Bit5>
-    typealias pb6 = DigitalPin<PortB,Bit5>
-    typealias pb7 = DigitalPin<PortB,Bit5>
-    
-    typealias pc0 = DigitalPin<PortC,Bit0>
-    typealias pc1 = DigitalPin<PortC,Bit1>
-    typealias pc2 = DigitalPin<PortC,Bit2>
-    typealias pc3 = DigitalPin<PortC,Bit3>
-    typealias pc4 = DigitalPin<PortC,Bit4>
-    typealias pc5 = DigitalPin<PortC,Bit5>
-    typealias pc6 = DigitalPin<PortC,Bit5>
-    typealias pc7 = DigitalPin<PortC,Bit5>
-    
-    typealias pd0 = DigitalPin<PortD,Bit0>
-    typealias pd1 = DigitalPin<PortD,Bit1>
-    typealias pd2 = DigitalPin<PortD,Bit2>
-    typealias pd3 = DigitalPin<PortD,Bit3>
-    typealias pd4 = DigitalPin<PortD,Bit4>
-    typealias pd5 = DigitalPin<PortD,Bit5>
-    typealias pd6 = DigitalPin<PortD,Bit5>
-    typealias pd7 = DigitalPin<PortD,Bit5>
-    
-    typealias pe0 = DigitalPin<PortE,Bit0>
-    typealias pe1 = DigitalPin<PortE,Bit1>
-    typealias pe2 = DigitalPin<PortE,Bit2>
-    typealias pe3 = DigitalPin<PortE,Bit3>
-    typealias pe4 = DigitalPin<PortE,Bit4>
-    typealias pe5 = DigitalPin<PortE,Bit5>
-    typealias pe6 = DigitalPin<PortE,Bit5>
-    typealias pe7 = DigitalPin<PortE,Bit5>
-    
-    typealias pf0 = DigitalPin<PortF,Bit0>
-    typealias pf1 = DigitalPin<PortF,Bit1>
-    typealias pf2 = DigitalPin<PortF,Bit2>
-    typealias pf3 = DigitalPin<PortF,Bit3>
-    typealias pf4 = DigitalPin<PortF,Bit4>
-    typealias pf5 = DigitalPin<PortF,Bit5>
-    typealias pf6 = DigitalPin<PortF,Bit5>
-    typealias pf7 = DigitalPin<PortF,Bit5>
-    
-    typealias pg0 = DigitalPin<PortG,Bit0>
-    typealias pg1 = DigitalPin<PortG,Bit1>
-    typealias pg2 = DigitalPin<PortG,Bit2>
-    typealias pg3 = DigitalPin<PortG,Bit3>
-    typealias pg4 = DigitalPin<PortG,Bit4>
-    typealias pg5 = DigitalPin<PortG,Bit5>
-    typealias pg6 = DigitalPin<PortG,Bit5>
-    typealias pg7 = DigitalPin<PortG,Bit5>
-    
-    typealias ph0 = DigitalPin<PortH,Bit0>
-    typealias ph1 = DigitalPin<PortH,Bit1>
-    typealias ph2 = DigitalPin<PortH,Bit2>
-    typealias ph3 = DigitalPin<PortH,Bit3>
-    typealias ph4 = DigitalPin<PortH,Bit4>
-    typealias ph5 = DigitalPin<PortH,Bit5>
-    typealias ph6 = DigitalPin<PortH,Bit5>
-    typealias ph7 = DigitalPin<PortH,Bit5>
-    
-    typealias pj0 = DigitalPin<PortJ,Bit0>
-    typealias pj1 = DigitalPin<PortJ,Bit1>
-    typealias pj2 = DigitalPin<PortJ,Bit2>
-    typealias pj3 = DigitalPin<PortJ,Bit3>
-    typealias pj4 = DigitalPin<PortJ,Bit4>
-    typealias pj5 = DigitalPin<PortJ,Bit5>
-    typealias pj6 = DigitalPin<PortJ,Bit5>
-    typealias pj7 = DigitalPin<PortJ,Bit5>
-    
-    typealias pk0 = DigitalPin<PortK,Bit0>
-    typealias pk1 = DigitalPin<PortK,Bit1>
-    typealias pk2 = DigitalPin<PortK,Bit2>
-    typealias pk3 = DigitalPin<PortK,Bit3>
-    typealias pk4 = DigitalPin<PortK,Bit4>
-    typealias pk5 = DigitalPin<PortK,Bit5>
-    typealias pk6 = DigitalPin<PortK,Bit5>
-    typealias pk7 = DigitalPin<PortK,Bit5>
-    
-    typealias pl0 = DigitalPin<PortL,Bit0>
-    typealias pl1 = DigitalPin<PortL,Bit1>
-    typealias pl2 = DigitalPin<PortL,Bit2>
-    typealias pl3 = DigitalPin<PortL,Bit3>
-    typealias pl4 = DigitalPin<PortL,Bit4>
-    typealias pl5 = DigitalPin<PortL,Bit5>
-    typealias pl6 = DigitalPin<PortL,Bit5>
-    typealias pl7 = DigitalPin<PortL,Bit5>
+
+    /// PortA
+    typealias pa0 = DigitalPin<PORTA,Bit0>
+    typealias pa1 = DigitalPin<PORTA,Bit1>
+    typealias pa2 = DigitalPin<PORTA,Bit2>
+    typealias pa3 = DigitalPin<PORTA,Bit3>
+    typealias pa4 = DigitalPin<PORTA,Bit4>
+    typealias pa5 = DigitalPin<PORTA,Bit5>
+    typealias pa6 = DigitalPin<PORTA,Bit6>
+    typealias pa7 = DigitalPin<PORTA,Bit7>
+
+    /// PortB
+    typealias pb0 = DigitalPin<PORTB,Bit0>
+    typealias pb1 = DigitalPin<PORTB,Bit1>
+    typealias pb2 = DigitalPin<PORTB,Bit2>
+    typealias pb3 = DigitalPin<PORTB,Bit3>
+    typealias pb4 = DigitalPin<PORTB,Bit4>
+    typealias pb5 = DigitalPin<PORTB,Bit5>
+    typealias pb6 = DigitalPin<PORTB,Bit6>
+    typealias pb7 = DigitalPin<PORTB,Bit7>
+
+    /// PortC
+    typealias pc0 = DigitalPin<PORTC,Bit0>
+    typealias pc1 = DigitalPin<PORTC,Bit1>
+    typealias pc2 = DigitalPin<PORTC,Bit2>
+    typealias pc3 = DigitalPin<PORTC,Bit3>
+    typealias pc4 = DigitalPin<PORTC,Bit4>
+    typealias pc5 = DigitalPin<PORTC,Bit5>
+    typealias pc6 = DigitalPin<PORTC,Bit6>
+    typealias pc7 = DigitalPin<PORTC,Bit7>
+
+    /// PortD
+    typealias pd0 = DigitalPin<PORTD,Bit0>
+    typealias pd1 = DigitalPin<PORTD,Bit1>
+    typealias pd2 = DigitalPin<PORTD,Bit2>
+    typealias pd3 = DigitalPin<PORTD,Bit3>
+    typealias pd4 = DigitalPin<PORTD,Bit4>
+    typealias pd5 = DigitalPin<PORTD,Bit5>
+    typealias pd6 = DigitalPin<PORTD,Bit6>
+    typealias pd7 = DigitalPin<PORTD,Bit7>
+
+    /// PortE
+    typealias pe0 = DigitalPin<PORTE,Bit0>
+    typealias pe1 = DigitalPin<PORTE,Bit1>
+    typealias pe2 = DigitalPin<PORTE,Bit2>
+    typealias pe3 = DigitalPin<PORTE,Bit3>
+    typealias pe4 = DigitalPin<PORTE,Bit4>
+    typealias pe5 = DigitalPin<PORTE,Bit5>
+    typealias pe6 = DigitalPin<PORTE,Bit6>
+    typealias pe7 = DigitalPin<PORTE,Bit7>
+
+    /// PortF
+    typealias pf0 = DigitalPin<PORTF,Bit0>
+    typealias pf1 = DigitalPin<PORTF,Bit1>
+    typealias pf2 = DigitalPin<PORTF,Bit2>
+    typealias pf3 = DigitalPin<PORTF,Bit3>
+    typealias pf4 = DigitalPin<PORTF,Bit4>
+    typealias pf5 = DigitalPin<PORTF,Bit5>
+    typealias pf6 = DigitalPin<PORTF,Bit6>
+    typealias pf7 = DigitalPin<PORTF,Bit7>
+
+    /// PortG
+    typealias pg0 = DigitalPin<PORTG,Bit0>
+    typealias pg1 = DigitalPin<PORTG,Bit1>
+    typealias pg2 = DigitalPin<PORTG,Bit2>
+    typealias pg3 = DigitalPin<PORTG,Bit3>
+    typealias pg4 = DigitalPin<PORTG,Bit4>
+    typealias pg5 = DigitalPin<PORTG,Bit5>
+    typealias pg6 = DigitalPin<PORTG,Bit6>
+    typealias pg7 = DigitalPin<PORTG,Bit7>
+
+    /// PortH
+    typealias ph0 = DigitalPin<PORTH,Bit0>
+    typealias ph1 = DigitalPin<PORTH,Bit1>
+    typealias ph2 = DigitalPin<PORTH,Bit2>
+    typealias ph3 = DigitalPin<PORTH,Bit3>
+    typealias ph4 = DigitalPin<PORTH,Bit4>
+    typealias ph5 = DigitalPin<PORTH,Bit5>
+    typealias ph6 = DigitalPin<PORTH,Bit6>
+    typealias ph7 = DigitalPin<PORTH,Bit7>
+
+    /// PortJ
+    typealias pj0 = DigitalPin<PORTJ,Bit0>
+    typealias pj1 = DigitalPin<PORTJ,Bit1>
+    typealias pj2 = DigitalPin<PORTJ,Bit2>
+    typealias pj3 = DigitalPin<PORTJ,Bit3>
+    typealias pj4 = DigitalPin<PORTJ,Bit4>
+    typealias pj5 = DigitalPin<PORTJ,Bit5>
+    typealias pj6 = DigitalPin<PORTJ,Bit6>
+    typealias pj7 = DigitalPin<PORTJ,Bit7>
+
+    /// PortK
+    typealias pk0 = DigitalPin<PORTK,Bit0>
+    typealias pk1 = DigitalPin<PORTK,Bit1>
+    typealias pk2 = DigitalPin<PORTK,Bit2>
+    typealias pk3 = DigitalPin<PORTK,Bit3>
+    typealias pk4 = DigitalPin<PORTK,Bit4>
+    typealias pk5 = DigitalPin<PORTK,Bit5>
+    typealias pk6 = DigitalPin<PORTK,Bit6>
+    typealias pk7 = DigitalPin<PORTK,Bit7>
+
+    /// PortL
+    typealias pl0 = DigitalPin<PORTL,Bit0>
+    typealias pl1 = DigitalPin<PORTL,Bit1>
+    typealias pl2 = DigitalPin<PORTL,Bit2>
+    typealias pl3 = DigitalPin<PORTL,Bit3>
+    typealias pl4 = DigitalPin<PORTL,Bit4>
+    typealias pl5 = DigitalPin<PORTL,Bit5>
+    typealias pl6 = DigitalPin<PORTL,Bit6>
+    typealias pl7 = DigitalPin<PORTL,Bit7>
+
+
 }
 
 
